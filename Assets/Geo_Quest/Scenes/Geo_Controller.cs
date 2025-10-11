@@ -7,6 +7,7 @@ public class Geo_Controller : MonoBehaviour
 {
     int variable1 = 3;
     private Rigidbody2D rb;
+    private SpriteRenderer spriteRenderer;
     public int speed = 5;
     public string nextlevel = "Scene_2";
     // Start is called before the first frame update
@@ -14,6 +15,7 @@ public class Geo_Controller : MonoBehaviour
     {
         Debug.Log("Hello World");
         rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -36,16 +38,37 @@ public class Geo_Controller : MonoBehaviour
                     break;
                 }
         }
+
+        
     }
 
     // Update is called once per frame
 
     void Update ()
     {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            spriteRenderer.color = Color.red;
+        }
 
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            spriteRenderer.color = Color.blue;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            spriteRenderer.color = Color.yellow;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            spriteRenderer.color = Color.white;
+        }
         float xInput = Input.GetAxis("Horizontal");
         rb.velocity = new Vector2 (xInput*speed,rb.velocity.y);
-        }
+    }
+}
+
         /*
         if (Input.GetKeyDown(KeyCode.W))
         {
@@ -64,4 +87,4 @@ public class Geo_Controller : MonoBehaviour
             transform.position += new Vector3(-1, 0, 0);
         }
         */
-    }
+   
