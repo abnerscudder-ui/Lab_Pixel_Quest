@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Geo_Controller : MonoBehaviour
 {
     int variable1 = 3;
     private Rigidbody2D rb;
     public int speed = 5;
+    public string nextlevel = "Scene_2";
     // Start is called before the first frame update
     void Start()
     {
@@ -14,8 +16,30 @@ public class Geo_Controller : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+       
+        {
+            Debug.Log(collision.tag);
+        }
+        switch (collision.tag)
+        {
+            case "Death":
+                {
+                    string thisLevel = SceneManager.GetActiveScene().name;
+                    SceneManager.LoadScene(thisLevel);
+                    break;
+                }
+            case "Finish":
+                { 
+                    SceneManager.LoadScene(nextlevel);
+                    break;
+                }
+        }
+    }
+
     // Update is called once per frame
-   
+
     void Update ()
     {
 
